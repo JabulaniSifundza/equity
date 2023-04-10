@@ -1,4 +1,4 @@
-# equity
+# Equity Research Aid App
 A React-Django Full-stack Equity Research Aid Application
 
 This application uses a Django server and a React front-end to assist users doing equity research easier.
