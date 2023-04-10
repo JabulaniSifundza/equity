@@ -11,12 +11,13 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import re
 from datetime import datetime
+from secret import API_TOKEN
 # Create your views here. 
 
 def index(request):
     return render(request, 'index.html')
 
-API_TOKEN = "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"
+API_TOKEN = API_TOKEN
 API_URL = "https://api-inference.huggingface.co/models/human-centered-summarization/financial-summarization-pegasus"
 SENTI_MODEL_URL = "https://api-inference.huggingface.co/models/ahmedrachid/FinancialBERT-Sentiment-Analysis"
 headers = {"Authorization": f"Bearer {API_TOKEN}"}
