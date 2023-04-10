@@ -1,0 +1,329 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;1,100&family=Montserrat:wght@200;300;400;500&family=Plus+Jakarta+Sans:wght@200;400;500&family=Sofia+Sans+Condensed:wght@400;500;600&display=swap');
+:root {
+  --primary-color: #008BFF;
+  --secondary-color: #00E5FF;
+  --complimentary-color: #000000;
+  --contrast-color: #FFFFFF;
+  --close-color: #FF0032;
+	--light-color:#FF0032;
+}
+
+html {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  overflow: scroll;
+}
+
+body{
+  background-color: var(--contrast-color);
+  overflow: scroll;
+}
+
+header{
+  width: 50vw;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5px;
+  margin-left: 90px
+}
+
+h1{
+  font-family: 'Lato', sans-serif;
+}
+h2{
+  font-family: 'Lato', sans-serif;
+  color: var(--complimentary-color);
+  font-size: 40.30px;
+  width: 100%
+}
+
+h3{
+  font-family: 'Sofia Sans Condensed', sans-serif;
+  font-family: 'Lato', sans-serif;
+  color: var(--primary-color);
+  font-size: 36.30px;
+}
+
+h4{
+  font-family: 'Sofia Sans Condensed', sans-serif;
+  font-family: 'Lato', sans-serif;
+  color: var(--close-color);
+  font-size: 28.30px;
+}
+
+p{
+  font-family: 'Sofia Sans Condensed', sans-serif;
+}
+
+.navigation{
+  width: 60vw;
+  top: 0;
+  margin-left: 100px;
+  margin-bottom: 200px;
+}
+
+.searchbar{
+  width: 90%;
+  background-color: var(--contrast-color);
+  color: var(--complimentary-color);
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -300px;
+  width: 340px;
+  height: 100%;
+  background-color: var(--primary-color);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease-in-out;
+  color: var(--contrast-color);
+  padding-left: 40px;
+  padding-right: 6px;
+}
+
+.sidebar p{
+  width: 76%;
+}
+
+.sidebar.show {
+  transform: translateX(300px);
+}
+
+.hamburger {
+  position: absolute;
+  top: 20px;
+  left: 330px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 20px;
+  cursor: pointer;
+  color: var(--contrast-color);
+  background-color: var(--contrast-color);
+}
+
+.hamburger span {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background-color: var(--contrast-color);
+  transition: transform 0.3s ease-in-out;
+  color: var(--contrast-color);
+}
+
+.hamburger span:nth-child(1) {
+  transform: translateY(0);
+}
+
+.hamburger span:nth-child(2) {
+  transform: translateY(8px);
+}
+
+.hamburger span:nth-child(3) {
+  transform: translateY(16px);
+}
+
+.sidebar.show .hamburger span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.sidebar.show .hamburger span:nth-child(2) {
+  transform: translateY(8px) rotate(-45deg);
+}
+
+.sidebar.show .hamburger span:nth-child(3) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.searchTicker{
+  width: 80%;
+  background-color: var(--contrast-color);
+  color: var(--complimentary-color);
+  border-radius: 8px;
+  border: 1.5px solid var(--primary-color);
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
+.searchContainer{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin-left: 40px;
+}
+
+
+.searchBtn{
+  width: 120px;
+  height: 50px;
+  background-color: var(--primary-color);
+  border-radius: 8px;
+  color: var(--contrast-color);
+  font-family: 'Lato', sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  margin-left: 12px;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+
+.summaryContainer{
+  width: 80%;
+  margin-left: 90px;
+  background-color: var(--contrast-color);
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 2px 6px;
+  border-radius: 12px;
+  padding-left: 30px;
+  padding-right: 30px;
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+.summary{
+  display: flex;
+  flex-direction: column;
+  border-bottom: 2px solid var(--primary-color);
+  margin-bottom: 12px
+}
+
+.summaryArticle{
+  font-weight: bold;
+  color: var(--complimentary-color);
+  font-size: 28px;
+}
+
+.summaryLink{
+  cursor: pointer;
+  align-self: flex-end;
+  border-radius: 8px;
+  width: 80px;
+  height: 40px;
+  text-align: center;
+  padding-top: 5px;
+  background-color: var(--primary-color);
+  text-decoration: none;
+  color: var(--contrast-color);
+  font-size: 22px;
+}
+.summaryLink:hover{
+  color: var(--contrast-color);
+}
+
+.summaryClass{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.summaryLabel{
+  color: var(--complimentary-color);
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.summarySentimentPos{
+  color: #348C31;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.summarySentimentNeut{
+  color: #FFC300;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.summarySentimentNeg{
+  color: var(--light-color);
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.summaryScore{
+  color: var(--complimentary-color);
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.metricContainer{
+  width: 90%;
+  background-color: var(--contrast-color);
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 2px 6px;
+  border-radius: 12px;
+  padding-left: 30px;
+  padding-right: 30px;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  margin-left: 10px;
+}
+
+.metricVisualizations{
+  display: grid;
+  grid-template-columns: 1fr;
+  width: 100%;
+}
+
+.metricKPI{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.largeCont{
+  width: 100vw;
+  height: 80vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;  
+}
+
+.graphsAndMetrics{
+  width: 100%;
+  margin-left: 90px;
+  margin-right: 90px;
+  background-color: var(--contrast-color);
+  border-radius: 12px;
+  padding-left: 30px;
+  padding-right: 30px;
+  margin-top: 60px;
+  margin-bottom: 40px;
+  display: flex;
+  flex-direction: row;
+}
+
+.appContainer{
+  width: 94vw;
+  margin-left: 90px;
+  background-color: var(--contrast-color);
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 2px 6px;
+  border-radius: 12px;
+  padding-left: 30px;
+  padding-right: 30px;
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+.income{
+  width: 500px;
+  height: fit-content;
+  margin-left: -100px;
+  height: 500px;
+  padding-bottom: 150px
+}
+
+.ratioVis{
+  width: 500px;
+  height: fit-content;
+  margin-left: 240px;
+  height: 500px;
+  padding-bottom: 150px
+}
+
+ .apexcharts-tooltip {
+    background: #f3f3f3;
+    color: #008BFF;
+  }
+
+.metrics{
+  margin-left: 280px;
+}
+
+.spacer{
+  margin-top: -32px
+}
