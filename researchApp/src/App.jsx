@@ -10,12 +10,10 @@ import Metrics from './components/Metrics';
 
 function App() {
   return (
-    
    <div>
     <Navigation />
     <Sidebar />
    </div>
-  
   )
 }
 

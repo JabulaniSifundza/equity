@@ -2,19 +2,19 @@ import React, {useState} from 'react';
 import axios from 'axios';
 import Chart from 'react-apexcharts';
 import { motion } from 'framer-motion';
-import {loaderImage} from '../assets/logo.PNG';
+import loaderImage from '../assets/logo.PNG';
+import myLogo from '../assets/myLogo.svg'
 
 const Loader = ({isLoading, children})=>{
   return (
-    <div>
+    <div className="loaderCont">
       {isLoading ? (
         <motion.img
           src={loaderImage}
           alt="Loading..."
-          initial={{ opacity: 0 }}
           exit={{ opacity: 0 }}
           animate={{
-            scale: [0.75, 1, 1.25, 1.5, 1.25, 1, 0.75],
+            scale: [0.25, 0.5, 0.75, 1, 1.25, 1, 0.75, 0.5, 0.25],
             opacity: 1
           }}
           transition={{ duration: 2, repeatType: "mirror", repeat: Infinity }}
@@ -28,15 +28,14 @@ const Loader = ({isLoading, children})=>{
 
 const SummaryLoader = ({summaryIsLoading, children})=>{
   return (
-    <div>
+    <div className="loaderCont">
       {summaryIsLoading ? (
         <motion.img 
           src={loaderImage}
           alt="Loading..."
-          initial={{ opacity: 0 }}
           exit={{ opacity: 0 }}
           animate={{
-            scale: [0.75, 1, 1.25, 1.5, 1.25, 1, 0.75],
+            scale: [0.25, 0.5, 0.75, 1, 1.25, 1, 0.75, 0.5, 0.25],
             opacity: 1
           }}
           transition={{ duration: 2, repeatType: "mirror", repeat: Infinity }}
@@ -76,7 +75,7 @@ const Searchbar = () => {
   const [beta, setBeta] = useState(0.00)
 
   const newFetch = async(name)=>{
-    const res = await axios.get((`http://127.0.0.1:8000/get_ticker_value_amounts/${name}/`))
+    const res = await axios.get(`http://jabulanijsifundza.pythonanywhere.com/get_ticker_value_amounts/${name}/`)
 
     setExpenses(res.data.TotalExpense)
     setNetIncome(res.data.NetIncome)
