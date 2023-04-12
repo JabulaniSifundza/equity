@@ -3,7 +3,6 @@ import axios from 'axios';
 import Chart from 'react-apexcharts';
 import { motion } from 'framer-motion';
 import loaderImage from '../assets/logo.PNG';
-import myLogo from '../assets/myLogo.svg'
 
 const Loader = ({isLoading, children})=>{
   return (
@@ -28,7 +27,7 @@ const Loader = ({isLoading, children})=>{
 
 const SummaryLoader = ({summaryIsLoading, children})=>{
   return (
-    <div className="loaderCont">
+    <div className="loaderContSummary">
       {summaryIsLoading ? (
         <motion.img 
           src={loaderImage}
@@ -45,8 +44,10 @@ const SummaryLoader = ({summaryIsLoading, children})=>{
     </div>
   )
 }
+
 const Searchbar = () => {
   const [inputValue, setInputValue] = useState('');
+
   const [isLoading, setIsLoading] = useState(true);
   const [summaryIsLoading, setsummaryIsLoading] = useState(true);
 
@@ -75,7 +76,7 @@ const Searchbar = () => {
   const [beta, setBeta] = useState(0.00)
 
   const newFetch = async(name)=>{
-    const res = await axios.get(`http://jabulanijsifundza.pythonanywhere.com/get_ticker_value_amounts/${name}/`)
+    const res = await axios.get(`http://127.0.0.1:8000/get_ticker_value_amounts/${name}/`)
 
     setExpenses(res.data.TotalExpense)
     setNetIncome(res.data.NetIncome)
@@ -95,19 +96,19 @@ const Searchbar = () => {
       setSentimentError(error.response.status)
     })
     setArticleURLS(Object.values(sentRes.data.cleaned_urls)[0])
+    setsummaryIsLoading(false)
     //console.log(Object.values(sentRes.data.cleaned_urls)[0])
     setTicker_scores(Object.values(sentRes.data.ticker_score)[0])
     //console.log(Object.values(sentRes.data.ticker_score)[0])
     setTicker_summary(Object.values(sentRes.data.ticker_summary)[0])
     console.log(Object.values(sentRes.data.ticker_summary)[0])
-    setIsLoading(false);
-    setsummaryIsLoading(false);
   }
 
   const handFetch = (stock)=>{
     newFetch(stock);
     console.log(margin)
     console.log(Object.keys(netIcome));
+    setIsLoading(false);
   }
 
   const netSeries = [{
@@ -267,21 +268,16 @@ const Searchbar = () => {
       <Loader isLoading={isLoading}>
         {expenses ? (
            <div className="graphsAndMetrics">
-          <div className="income">
-            <Chart options={netOptions} series={netSeries} width="700px" height="600px"/>
+            <Chart options={netOptions} series={netSeries} width="680px" height="600px"/>
+            <Chart options={ratioOptions} series={ratioSeries} width="680px" height="600px"/>
+            <div className="metrics">
+              <h5>CAPM/Expected Return: <span className="spacer">{`${(capm * 100).toFixed(2)}%`}</span></h5>
+            </div>
+            <div className="metrics">
+              <h5>{`${inputValue} Beta`}: <span className="spacer">{`${(beta.toFixed(2))}`}</span></h5>
+            </div>
           </div>
-          <div className="ratioVis">
-            <Chart options={ratioOptions} series={ratioSeries} width="700px" height="600px"/>
-          </div> 
-          <div className="metrics">
-            <h2>CAPM/Expected Return:</h2>
-            <h3 className="spacer">{`${(capm * 100).toFixed(2)}%`}</h3>
-
-            <h2>{`${inputValue} Beta`}</h2>
-            <h3 className="spacer">{`${(beta.toFixed(2))}`}</h3>
-          </div>
-          </div>
-          ): (
+          ):(
           <div className="graphsAndMetrics">
             <h4>We are sorry but an unknown error has occurred. Please try your search again</h4>    
           </div>
@@ -317,7 +313,7 @@ const Searchbar = () => {
            )}
         </div>
       </SummaryLoader>
-
+      
     </div>
   )
 }

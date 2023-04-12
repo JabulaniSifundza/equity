@@ -22,5 +22,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', TemplateView.as_view(template_name='index.html')),
     path('get_news_clean_summarize/<str:research_ticker>/', views.get_news_clean_summarize, name='get_news_clean_summarize'),
-    path('get_ticker_value_amounts/<str:research_ticker>/', views.get_ticker_value_amounts, name='get_ticker_value_amounts') 
+    path('get_ticker_value_amounts/<str:research_ticker>/', views.get_ticker_value_amounts, name='get_ticker_value_amounts'),
 ]

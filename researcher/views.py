@@ -3,7 +3,7 @@ import requests
 from transformers import BertTokenizer, BertForSequenceClassification
 from transformers import pipeline
 from bs4 import BeautifulSoup
-from django.http import JsonResponse
+from django.http import JsonResponse, FileResponse
 import json
 import numpy as np
 from yahooquery import Ticker
@@ -11,13 +11,14 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import re
 from datetime import datetime
-from secret import API_TOKEN
+import io
+from fpdf import FPDF
 # Create your views here. 
 
 def index(request):
     return render(request, 'index.html')
 
-API_TOKEN = API_TOKEN
+API_TOKEN = "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"
 API_URL = "https://api-inference.huggingface.co/models/human-centered-summarization/financial-summarization-pegasus"
 SENTI_MODEL_URL = "https://api-inference.huggingface.co/models/ahmedrachid/FinancialBERT-Sentiment-Analysis"
 headers = {"Authorization": f"Bearer {API_TOKEN}"}
@@ -38,6 +39,18 @@ def sent_query(payload):
 
 
 research_tickers = []
+
+netIncomeArr = []
+totalExpenseArr = []
+endingCashArr = []
+capmArr = []
+profitMarginArr = []
+yearsArr = []
+
+docSummary = []
+scoresArr = []
+urlsArr = []
+
 
 def get_news(ticker):
     news_source = f"https://www.google.com/search?q=yahoo+finance+{ticker}&tbm=nws"
@@ -208,6 +221,9 @@ def get_news_clean_summarize(request, research_ticker):
     ticker_summary = {ticker:summarize(articles[ticker]) for ticker in research_tick_as_list}
     ticker_score = {ticker:get_sentiment(ticker_summary[ticker]) for ticker in research_tick_as_list}
     full_summary = create_output_list(ticker_summary, ticker_score, cleaned_urls)
+    docSummary.append(ticker_summary)
+    scoresArr.append(ticker_score)
+    urlsArr.append(cleaned_urls)
     full_summary.insert(0, ['Ticker Symbol', 'Article Summary', 'Sentiment/Label', 'Confidence', 'Full article URL'])
     return JsonResponse({'FullSummary': full_summary, 'ticker_score': ticker_score, 'ticker_summary': ticker_summary, 'cleaned_urls': cleaned_urls})
 
@@ -234,6 +250,7 @@ def get_ticker_value_amounts(request, research_ticker):
     
     
     years = get_year(income_state['asOfDate'])
+    
     net = get_net(income_state['NetIncome'])
     ebit = get_ebit(income_state['EBIT'])
     total_revenues = get_revenue(income_state['TotalRevenue'])
@@ -257,7 +274,11 @@ def get_ticker_value_amounts(request, research_ticker):
     total_expense_dict = {year: cost for (year, cost) in zip(years, total_expense)}
     net_income_dict = {year: income for (year, income) in zip(years, net)}
     ending_cash_values = {year: ending_cash for (year, ending_cash) in zip(years, val_ending_cash_balance)}
+    netIncomeArr.append(net_income_dict.values())
+    totalExpenseArr.append(total_expense_dict.values())
+    endingCashArr.append(ending_cash_values.values())
+    profitMarginArr.append(net_profit_margin.values())
+    capmArr.append(company_capm)
+    yearsArr.append(years)
     return JsonResponse({'TotalExpense': total_expense_dict, 'NetIncome': net_income_dict, 'ExpectedReturn': company_capm, 'CompanyBeta': beta_final, 'CurrentRatios':current_ratios, 'ReturnOnCapitalEmployed':roce, 'NetProfitMargin': net_profit_margin, 'OperatingCashFlowRatio': operating_cash_flow_ratio, 'EndingCash': ending_cash_values})
-
-
 

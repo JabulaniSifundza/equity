@@ -31,6 +31,8 @@ header{
 
 h1{
   font-family: 'Lato', sans-serif;
+  color: var(--contrast-color);
+  font-size: 46.30px;
 }
 h2{
   font-family: 'Lato', sans-serif;
@@ -51,6 +53,12 @@ h4{
   font-family: 'Lato', sans-serif;
   color: var(--close-color);
   font-size: 28.30px;
+}
+
+h5{
+  font-family: 'Lato', sans-serif;
+  color: var(--complimentary-color);
+  font-size: 24.30px;
 }
 
 p{
@@ -150,8 +158,8 @@ p{
 .searchContainer{
   display: flex;
   flex-direction: row;
-  width: 100%;
-  margin-left: 40px;
+  width: 92vw;
+  margin-left: 120px;
 }
 
 
@@ -168,23 +176,25 @@ p{
   box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 }
 
-.summaryContainer{
-  width: 80%;
-  margin-left: 90px;
+.summaryContainer {
+  width: 60%;
+  margin-left: -140px;
+  height: fit-content;
   background-color: var(--contrast-color);
   box-shadow: rgba(0, 0, 0, 0.16) 0px 2px 6px;
   border-radius: 12px;
-  padding-left: 30px;
-  padding-right: 30px;
-  margin-top: 20px;
-  margin-bottom: 40px;
+  margin-top: 240px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 12px;
 }
 
 .summary{
   display: flex;
   flex-direction: column;
   border-bottom: 2px solid var(--primary-color);
-  margin-bottom: 12px
+  margin-bottom: 12px;
+  width: 100%;
 }
 
 .summaryArticle{
@@ -275,32 +285,27 @@ p{
 }
 
 .graphsAndMetrics{
-  width: 100%;
-  margin-left: 90px;
-  margin-right: 90px;
+  width: 90%;
+  margin-left: -40px;
   background-color: var(--contrast-color);
   border-radius: 12px;
   padding-left: 30px;
   padding-right: 30px;
   margin-top: 60px;
-  margin-bottom: 40px;
-  display: flex;
-  flex-direction: row;
+  margin-bottom: 200px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
 .appContainer{
-  width: 94vw;
-  margin-left: 90px;
-  background-color: var(--contrast-color);
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 2px 6px;
-  border-radius: 12px;
-  padding-left: 30px;
-  padding-right: 30px;
-  margin-top: 20px;
-  margin-bottom: 40px;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  overflow: scroll;
 }
 .income{
-  width: 500px;
+  width: 300px;
   height: fit-content;
   margin-left: -100px;
   height: 500px;
@@ -308,7 +313,7 @@ p{
 }
 
 .ratioVis{
-  width: 500px;
+  width: 300px;
   height: fit-content;
   margin-left: 240px;
   height: 500px;
@@ -325,7 +330,8 @@ p{
 }
 
 .spacer{
-  margin-top: -32px
+  margin-top: -32px;
+  color: var(--primary-color);
 }
 
 img{
@@ -333,6 +339,7 @@ img{
   height: 200px;
   margin-left: auto;
   margin-right: auto;
+  margin-top: 220px;
 }
 
 .loaderCont{
@@ -342,12 +349,47 @@ img{
   border-radius: 12px;
   padding-left: 30px;
   padding-right: 30px;
-  margin-top: 60px;
+  margin-top: 0px;
   margin-bottom: 40px;
   display: flex;
   flex-direction: row;
   justify-content: center;
   justify-items: center;
   justify-self: center;
+}
 
+
+.loaderContSummary{
+  width: 100%;
+  height: 50vh;
+  background-color: var(--contrast-color);
+  border-radius: 12px;
+  padding-left: 30px;
+  padding-right: 30px;
+  margin-top: 220px;
+  margin-bottom: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  justify-items: center;
+  justify-self: center;
+}
+
+.pdfLink{
+  cursor: pointer;
+  align-self: flex-end;
+  border-radius: 8px;
+  width: 160px;
+  height: 60px;
+  text-align: center;
+  padding-top: 5px;
+  background-color: var(--primary-color);
+  text-decoration: none;
+  color: var(--contrast-color);
+  font-size: 20px;
+  margin-bottom: 60px;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+.pdfLink:hover{
+  color: var(--contrast-color);
 }
